@@ -40,4 +40,4 @@ Thumbs.db
 .env
 
 # Application
-src/environments/environment.dev.ts
+src/environments/environment.ts
