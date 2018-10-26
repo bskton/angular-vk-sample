@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { AuthService } from "../auth/auth.service";
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: "app-home",
@@ -14,19 +15,26 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   ngOnInit() {
-    this.getProfileInfo();
-  }
-
-  getProfileInfo() {
     if (this.auth.isAuthenticated()) {
-      const url =
-        this.url +
-        "account.getProfileInfo?access_token=" +
-        this.auth.getAccessToken() +
-        "&v=5.87";
-      this.http.jsonp(url, 'callback').subscribe(data => {
-        console.log('JSONP Data', data);
-      });
+      let url =
+        "https://api.vk.com/method/" +
+        "users.get?" +
+        "user_ids=" +
+        this.auth.getUserId() +
+        "&v=" +
+        environment.vk.version +
+        "&access_token=" +
+        this.auth.getAccessToken();
+      this.http.jsonp(url, "callback").subscribe(data => console.log(data));
+      url =
+        "https://api.vk.com/method/" +
+        "friends.search?" +
+        "count=5" +
+        "&v=" +
+        environment.vk.version +
+        "&access_token=" +
+        this.auth.getAccessToken();
+      this.http.jsonp(url, "callback").subscribe(data => console.log(data));
     }
   }
 }

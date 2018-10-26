@@ -1,4 +1,5 @@
 <header>
+  <a routerLink="/">Home</a>
   <button *ngIf="!isAuthenticated()" (click)="login()">Log In</button>
   <button *ngIf="isAuthenticated()" (click)="logout()">Log Out</button>
 </header>
