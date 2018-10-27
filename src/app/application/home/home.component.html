@@ -1,8 +1,7 @@
-<header>
-  <a routerLink="/">Home</a>
+<section>
   <button *ngIf="!isAuthenticated()" (click)="login()">Log In</button>
   <button *ngIf="isAuthenticated()" (click)="logout()">Log Out</button>
-</header>
-<main>
-  <router-outlet></router-outlet>
-</main>
+</section>
+<section>
+  <div *ngIf="user">User name: {{ user.firstName }} {{ user.lastName }}</div>
+</section>

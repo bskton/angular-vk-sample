@@ -4,10 +4,12 @@
 
 export const environment = {
   production: false,
-  auth0: {
-    clientID: "your-client-id",
-    domain: "your-domain",
-    redirectUri: "http://localhost:4200/callback"
+  vk: {
+    clientId: "your-client-id",
+    redirectUri: "http://localhost:4200/callback",
+    scope: "friends",
+    responseType: "token",
+    version: "5.87"
   }
 };
 
