@@ -26,8 +26,7 @@ export class VkService implements AuthService {
       "&response_type=" +
       environment.vk.responseType +
       "&v=" +
-      environment.vk.version +
-      "&revoke=1";
+      environment.vk.version;
     this.document.location.href = url;
   }
 
