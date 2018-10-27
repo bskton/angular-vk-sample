@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, Inject } from "@angular/core";
-import { Observable } from "rxjs";
-import { map, take } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { map } from "rxjs/operators";
 
 import { AuthService } from "../../domain/model/auth/auth.service";
 import { User } from "../../domain/model/user/user";
@@ -38,7 +38,7 @@ export class VkRepository implements UserRepository {
     );
   }
 
-  getFriends(limit: number): User[] {
+  getFriends(limit: number): Observable<User[]> {
     const url =
       this.baseUrl +
       "friends.search?" +
@@ -48,8 +48,17 @@ export class VkRepository implements UserRepository {
       environment.vk.version +
       "&access_token=" +
       this.auth.getAccessToken();
-    this.http.jsonp(url, "callback").subscribe(data => console.log(data));
-    return [];
+    return this.http.jsonp(url, "callback").pipe(
+      map((data: FriendsResponse) =>
+        data.response.items.map(item => {
+          return {
+            id: item.id,
+            firstName: item.first_name,
+            lastName: item.last_name
+          };
+        })
+      )
+    );
   }
 }
 
@@ -61,4 +70,16 @@ interface UserResponse {
       last_name: string;
     }
   ];
+}
+
+interface FriendsResponse {
+  response: {
+    items: [
+      {
+        id: number;
+        first_name: string;
+        last_name: string;
+      }
+    ];
+  };
 }

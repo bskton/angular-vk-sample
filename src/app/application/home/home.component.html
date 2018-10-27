@@ -5,3 +5,9 @@
 <section>
   <div *ngIf="user">User name: {{ user.firstName }} {{ user.lastName }}</div>
 </section>
+<section>
+  <ul *ngIf="friends">
+    <li *ngFor="let friend of friends">{{ friend.firstName }}</li>
+  </ul>
+</section>
+<section *ngIf="!isAuthenticated()">Please log in to see your friends.</section>

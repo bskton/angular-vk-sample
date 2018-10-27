@@ -12,6 +12,8 @@ import { User } from "../../domain/model/user/user";
 export class HomeComponent implements OnInit {
   user: User;
 
+  friends: User[];
+
   constructor(private userService: UserService) {}
 
   ngOnInit() {
@@ -19,7 +21,10 @@ export class HomeComponent implements OnInit {
         this.user = user;
     });
     this.userService.getUser();
-    // this.friends = this.userService.getFiveFriends();
+    this.userService.friendsChanged().subscribe((friends: User[]) => {
+      this.friends = friends;
+    })
+    this.userService.getFiveFriends();
   }
 
   isAuthenticated(): boolean {
