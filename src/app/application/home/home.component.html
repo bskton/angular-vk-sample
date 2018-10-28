@@ -1,13 +1,22 @@
-<section>
-  <button mat-raised-button color="primary" *ngIf="!isAuthenticated()" (click)="login()">Войти</button>
-  <button mat-raised-button *ngIf="isAuthenticated()" (click)="logout()">Выйти</button>
+<section class="home">
+  <div *ngIf="!isAuthenticated()">
+    <div class="scaling-svg-container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="home__account-icon"><path d="M3 5v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.11 0-2 .9-2 2zm12 4c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm-9 8c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1H6v-1z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+    </div>
+    <div>Войдите для того, чтобы увидеть своих друзей.</div>
+    <button mat-raised-button color="primary" (click)="login()">Войти</button>
+  </div>
+  <div *ngIf="isAuthenticated()">
+    <div class="scaling-svg-container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="home__check-icon"><path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0z"/><path d="M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+    </div>
+    <h1 class="heading-primary" *ngIf="user">Здравствуйте, {{ user.lastName }} {{ user.firstName }}!</h1>
+    <p>Вот список ваших друзей</p>
+    <mat-list role="list" *ngIf="friends">
+      <mat-list-item role="listitem" *ngFor="let friend of friends">{{ friend.lastName }} {{ friend.firstName }}</mat-list-item>
+    </mat-list>
+    <div>
+      <button mat-raised-button (click)="logout()">Выйти</button>
+    </div>
+  </div>
 </section>
-<section>
-  <div *ngIf="user">User name: {{ user.firstName }} {{ user.lastName }}</div>
-</section>
-<section>
-  <ul *ngIf="friends">
-    <li *ngFor="let friend of friends">{{ friend.firstName }}</li>
-  </ul>
-</section>
-<section *ngIf="!isAuthenticated()">Войдите для того, чтобы увидеть своих друзей.</section>

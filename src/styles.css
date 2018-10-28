@@ -21,3 +21,10 @@ body {
     font-size: 1.6rem;
     color: #777;
 }
+
+.scaling-svg-container {
+  display: inline-block;
+  position: relative;
+  height: 10rem;
+  width: 10rem;
+}

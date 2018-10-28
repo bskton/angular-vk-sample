@@ -41,27 +41,29 @@ export class VkService implements AuthService {
 
   handleAuthentication(): void {
     const fragment = this.router.parseUrl(this.router.url).fragment;
-    const params = fragment.split("&");
-    const authResult: AuthResult = params.reduce(
-      (result, item) => {
-        const a = item.split("=");
-        result[this.snakeToCamel(a[0])] = a[1];
-        return result;
-      },
-      {
-        accessToken: null,
-        userId: null,
-        expiresIn: null
+    if (fragment) {
+      const params = fragment.split("&");
+      const authResult: AuthResult = params.reduce(
+        (result, item) => {
+          const a = item.split("=");
+          result[this.snakeToCamel(a[0])] = a[1];
+          return result;
+        },
+        {
+          accessToken: null,
+          userId: null,
+          expiresIn: null
+        }
+      );
+      if (
+        authResult.accessToken !== null &&
+        authResult.userId !== null &&
+        authResult.expiresIn !== null
+      ) {
+        this.setSession(authResult);
+      } else {
+        this.removeSession();
       }
-    );
-    if (
-      authResult.accessToken !== null &&
-      authResult.userId !== null &&
-      authResult.expiresIn !== null
-    ) {
-      this.setSession(authResult);
-    } else {
-      this.removeSession();
     }
     this.router.navigate(["/home"]);
   }

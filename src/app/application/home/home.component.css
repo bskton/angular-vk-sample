@@ -1,0 +1,27 @@
+.home {
+  text-align: center;
+}
+
+.home__account-icon,
+.home__check-icon {
+  fill: #55c57a;
+  position: absolute; 
+  height: 100%; 
+  width: 100%; 
+  left: 0; 
+  top: 0;
+}
+
+.heading-primary {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+button {
+  margin-top: 2rem;
+}
+
+mat-list {
+  display: inline-block;
+}
