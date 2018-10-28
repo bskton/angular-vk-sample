@@ -1,6 +1,6 @@
 <section>
-  <button *ngIf="!isAuthenticated()" (click)="login()">Log In</button>
-  <button *ngIf="isAuthenticated()" (click)="logout()">Log Out</button>
+  <button mat-raised-button color="primary" *ngIf="!isAuthenticated()" (click)="login()">Войти</button>
+  <button mat-raised-button *ngIf="isAuthenticated()" (click)="logout()">Выйти</button>
 </section>
 <section>
   <div *ngIf="user">User name: {{ user.firstName }} {{ user.lastName }}</div>
@@ -10,4 +10,4 @@
     <li *ngFor="let friend of friends">{{ friend.firstName }}</li>
   </ul>
 </section>
-<section *ngIf="!isAuthenticated()">Please log in to see your friends.</section>
+<section *ngIf="!isAuthenticated()">Войдите для того, чтобы увидеть своих друзей.</section>
