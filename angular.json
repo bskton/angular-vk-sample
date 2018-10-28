@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "webim-oath-vk-assignment": {
+    "angular-vk-sample": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/webim-oath-vk-assignment",
+            "outputPath": "dist/angular-vk-sample",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "webim-oath-vk-assignment:build"
+            "browserTarget": "angular-vk-sample:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "webim-oath-vk-assignment:build:production"
+              "browserTarget": "angular-vk-sample:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "webim-oath-vk-assignment:build"
+            "browserTarget": "angular-vk-sample:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "webim-oath-vk-assignment-e2e": {
+    "angular-vk-sample-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "webim-oath-vk-assignment:serve"
+            "devServerTarget": "angular-vk-sample:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "webim-oath-vk-assignment:serve:production"
+              "devServerTarget": "angular-vk-sample:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "webim-oath-vk-assignment"
+  "defaultProject": "angular-vk-sample"
 }

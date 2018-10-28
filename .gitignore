@@ -40,4 +40,7 @@ Thumbs.db
 .env
 
 # Application
-src/environments/environment.ts
+.firebase/
+src/environments/
+!src/environments/environment.dist.ts
+.firebaserc
